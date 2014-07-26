@@ -1,0 +1,66 @@
+ int stan = 0; //current state
+ int p1;  //create In  
+ int p2;
+ int ko;
+ int kz;
+ int za;
+ int wl;
+ 
+
+void setup() {
+  // put your setup code here, to run once:
+pinMode(1,INPUT);  //pilot 1 otwieranie
+pinMode(2,INPUT);  //pilot 2 zamykanie
+pinMode(3,INPUT);  //krancowka otwarty
+pinMode(4,INPUT);  //krancowka zamkniety
+pinMode(5,INPUT);  //zabezpieczenie
+pinMode(6,OUTPUT);  //silnik otwieranie
+pinMode(7,OUTPUT);  //silnik zamykanie
+pinMode(8,OUTPUT);  //LED na bramie
+pinMode(9,OUTPUT);  //ostrzegawcze 
+pinMode(10,OUTPUT);  //swiatlo w garazu
+pinMode(11,INPUT);  //Włacznik światła 
+}
+
+void loop(){
+  // put your main code here, to run repeatedly:
+   p1 = digitalRead(1);
+   p2 = digitalRead(2);
+   ko = digitalRead(3);
+   kz = digitalRead(4);
+   za = digitalRead(5);
+   wl = digitalRead(11);
+  if(p1 == HIGH) {
+    stan = +1;
+  }
+  if(p2 == HIGH) {
+    stan = -1;
+  }
+ 
+  if(stan >1,stan<-1,ko==HIGH,kz==HIGH,za==HIGH) {
+    stan = 0;
+   }
+  if(stan==1) {
+    digitalWrite(7,LOW);
+    digitalWrite(6,HIGH);
+  }
+  if(stan==-1) {
+    digitalWrite(6,LOW);
+    digitalWrite(7,HIGH);
+  }
+  if(stan==0) {
+    digitalWrite(6,LOW);
+    digitalWrite(7,LOW);
+    digitalWrite(8,LOW);
+  }
+  else {
+    digitalWrite(8,HIGH);
+  }
+  if(za==HIGH) {
+    digitalWrite(9,HIGH);
+  }
+   else {
+    digitalWrite(9,LOW);
+   }
+
+}
